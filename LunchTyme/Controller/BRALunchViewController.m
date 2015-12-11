@@ -12,7 +12,7 @@
 
 @implementation BRALunchViewController
 
-@synthesize resultArray;
+@synthesize resultArray,mRestaurantCollectionView;
 
 - (instancetype)init
 {
