@@ -10,4 +10,6 @@
 
 @interface BRALunchViewController : UIViewController
 
+@property (nonatomic, strong) NSArray *resultArray;
+
 @end

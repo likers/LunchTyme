@@ -12,6 +12,18 @@
 
 @implementation BRALunchViewController
 
+@synthesize resultArray;
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self)
+    {
+        
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -28,12 +40,12 @@
 - (void)getJsonData
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager GET:@"http://sandbox.bottlerocketapps.com/BR_iOS_CodingExam_2015_Server/restaurants.json" parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
+    [manager GET:@"http://sandbox.bottlerocketapps.com/BR_iOS_CodingExam_2015_Server/restaurants.json" parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
+        resultArray = [[NSArray alloc] initWithArray: responseObject[@"restaurants"]];
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
-    
 }
 
 @end
