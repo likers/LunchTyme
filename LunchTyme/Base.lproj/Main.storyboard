@@ -83,7 +83,7 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="DbY-Ns-l6L" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="JMi-4S-WEF" customClass="CustomTabBar">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="JMi-4S-WEF" customClass="BRACustomTabBar">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>

@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CustomTabBar.h"
+#import "BRACustomTabBar.h"
 
-@implementation CustomTabBar
+@implementation BRACustomTabBar
 
 -(CGSize)sizeThatFits:(CGSize)size
 {

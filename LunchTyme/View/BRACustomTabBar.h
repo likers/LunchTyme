@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomTabBar : UITabBar
+@interface BRACustomTabBar : UITabBar
 
 @end
