@@ -17,6 +17,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+    UITabBar *tabBar = tabBarController.tabBar;
+    UITabBarItem *tabBarItemLunch = [tabBar.items objectAtIndex:0];
+    UITabBarItem *tabBarItemInternets = [tabBar.items objectAtIndex:1];
+    
+    [tabBarItemLunch setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"AvenirNext-Regular" size:10.0f], NSFontAttributeName, nil] forState:UIControlStateNormal];
+    [tabBarItemInternets setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"AvenirNext-Regular" size:10.0f], NSFontAttributeName, nil] forState:UIControlStateNormal];
+    
     return YES;
 }
 

@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  BRAInternetsViewController.h
 //  LunchTyme
 //
 //  Created by Jinhuan Li on 12/10/15.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface BRAInternetsViewController : UIViewController
 
 @end
-
