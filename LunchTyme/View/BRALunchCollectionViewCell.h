@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BRARestaurant.h"
 
 @interface BRALunchCollectionViewCell : UICollectionViewCell
+
+@property (nonatomic, strong) BRARestaurant *restaurant;
 
 @end

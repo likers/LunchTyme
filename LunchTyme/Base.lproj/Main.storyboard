@@ -9,7 +9,7 @@
         <!--Lunch View Controller-->
         <scene sceneID="xDS-1K-icF">
             <objects>
-                <viewController id="7xo-b4-2kE" customClass="BRALunchViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="7xo-b4-2kE" customClass="BRALunchViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cja-0M-nZw"/>
                         <viewControllerLayoutGuide type="bottom" id="Lbu-rd-icg"/>
@@ -18,40 +18,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5jp-rT-vZV">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1g4-lZ-whb">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DzK-3X-Q5j">
-                                    <size key="itemSize" width="50" height="50"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oC1-BE-owo">
+                                    <size key="itemSize" width="421" height="208"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="u1N-QR-eUk">
-                                        <rect key="frame" x="0.0" y="64" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="customCell" id="VtS-J7-it5" customClass="BRALunchCollectionViewCell">
+                                        <rect key="frame" x="89.5" y="0.0" width="421" height="208"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="421" height="208"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="7xo-b4-2kE" id="6Bk-jg-xfo"/>
+                                    <outlet property="delegate" destination="7xo-b4-2kE" id="ccM-5H-xNw"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="5jp-rT-vZV" secondAttribute="trailing" constant="-20" id="AXP-Uf-vtv"/>
-                            <constraint firstItem="5jp-rT-vZV" firstAttribute="leading" secondItem="pWU-gF-nW2" secondAttribute="leadingMargin" constant="-20" id="TkI-f5-PPz"/>
-                            <constraint firstItem="Lbu-rd-icg" firstAttribute="top" secondItem="5jp-rT-vZV" secondAttribute="bottom" id="kUB-F0-8hY"/>
-                            <constraint firstItem="5jp-rT-vZV" firstAttribute="top" secondItem="cja-0M-nZw" secondAttribute="bottom" id="kZH-UE-flT"/>
+                            <constraint firstItem="1g4-lZ-whb" firstAttribute="leading" secondItem="pWU-gF-nW2" secondAttribute="leadingMargin" constant="-20" id="02I-dy-yHH"/>
+                            <constraint firstItem="Lbu-rd-icg" firstAttribute="top" secondItem="1g4-lZ-whb" secondAttribute="bottom" id="BI9-hp-hEz"/>
+                            <constraint firstItem="1g4-lZ-whb" firstAttribute="top" secondItem="cja-0M-nZw" secondAttribute="bottom" id="EIX-z7-YxW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1g4-lZ-whb" secondAttribute="trailing" constant="-20" id="RUf-vC-2Vr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YXc-4X-VFJ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="mRestaurantCollectionView" destination="5jp-rT-vZV" id="vGa-8A-FKg"/>
+                        <outlet property="mCollectionView" destination="1g4-lZ-whb" id="vbU-6n-cu6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9UE-08-wSX" userLabel="First Responder" sceneMemberID="firstResponder"/>

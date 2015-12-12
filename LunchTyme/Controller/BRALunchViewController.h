@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BRARestaurant.h"
 
-@interface BRALunchViewController : UIViewController
+@interface BRALunchViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) NSArray *resultArray;
-@property (weak, nonatomic) IBOutlet UICollectionView *mLunchCollectionView;
+@property (weak, nonatomic) IBOutlet UICollectionView *mCollectionView;
 
 @end

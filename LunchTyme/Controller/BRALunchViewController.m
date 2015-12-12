@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "BRALunchViewController.h"
-#import "AFNetworking.h"
+#import "BRALunchCollectionViewCell.h"
 
 @implementation BRALunchViewController
 
-@synthesize resultArray,mLunchCollectionView;
+@synthesize resultArray, mCollectionView;
 
 - (instancetype)init
 {
@@ -35,17 +35,78 @@
 {
     self.navigationItem.title = @"Lunch";
     [self.navigationController.navigationBar setTitleTextAttributes:@{ NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont fontWithName:@"AvenirNext-DemiBold" size:17.0f] }];
+    
+    self.mCollectionView.backgroundColor = [UIColor whiteColor];
+    [self.mCollectionView registerClass:[BRALunchCollectionViewCell class]
+            forCellWithReuseIdentifier:@"customCell"];
 }
 
 - (void)getJsonData
 {
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager GET:@"http://sandbox.bottlerocketapps.com/BR_iOS_CodingExam_2015_Server/restaurants.json" parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        resultArray = [[NSArray alloc] initWithArray: responseObject[@"restaurants"]];
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
+    NSURLSession *session = [NSURLSession sharedSession];
+    [[session dataTaskWithURL:[NSURL URLWithString:@"http://sandbox.bottlerocketapps.com/BR_iOS_CodingExam_2015_Server/restaurants.json"]
+            completionHandler:^(NSData *data,
+                                NSURLResponse *response,
+                                NSError *error) {
+                NSHTTPURLResponse *httpResp = (NSHTTPURLResponse*) response;
+                if (httpResp.statusCode == 200)
+                {
+                    NSError *jsonError;
+                    NSDictionary *resultDic =
+                    [NSJSONSerialization JSONObjectWithData:data
+                                                    options:NSJSONReadingAllowFragments
+                                                      error:&jsonError];
+                    
+                    self.resultArray = [[NSArray alloc] initWithArray:resultDic[@"restaurants"]];
+                    
+                    if (!jsonError)
+                    {
+                        [self dataError:jsonError];
+                    }
+                } else
+                {
+                    [self dataError:error];
+                }
+                
+            }] resume];
+}
+
+#pragma mark - UICollectionViewDataSource
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return resultArray.count;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                  cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    BRALunchCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"customCell"
+                                              forIndexPath:indexPath];
+    BRARestaurant *restaurant = [[BRARestaurant alloc] initWithDic:self.resultArray[indexPath.section]];
+    cell.restaurant = restaurant;
+    return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(DEVICE_WIDTH, 180.f);
+}
+
+- (void)dataError:(NSError *) error
+{
+    NSLog(@"%@", [error localizedDescription]);
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
 }
 
 @end

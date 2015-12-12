@@ -16,13 +16,10 @@
 		EDC5162F1C1A9AD6000CC52F /* BRAInternetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5162E1C1A9AD6000CC52F /* BRAInternetsViewController.m */; };
 		EDC516321C1A9D7E000CC52F /* BRACustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC516311C1A9D7E000CC52F /* BRACustomTabBar.m */; };
 		EDC516361C1AA0F6000CC52F /* UIColor+LunchTyme.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC516351C1AA0F6000CC52F /* UIColor+LunchTyme.m */; };
-		EDC516461C1AA81B000CC52F /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5163A1C1AA81B000CC52F /* AFHTTPSessionManager.m */; };
-		EDC516471C1AA81B000CC52F /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5163D1C1AA81B000CC52F /* AFNetworkReachabilityManager.m */; };
-		EDC516481C1AA81B000CC52F /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5163F1C1AA81B000CC52F /* AFSecurityPolicy.m */; };
-		EDC516491C1AA81B000CC52F /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC516411C1AA81B000CC52F /* AFURLRequestSerialization.m */; };
-		EDC5164A1C1AA81B000CC52F /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC516431C1AA81B000CC52F /* AFURLResponseSerialization.m */; };
-		EDC5164B1C1AA81B000CC52F /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC516451C1AA81B000CC52F /* AFURLSessionManager.m */; };
 		EDC5164E1C1ABC88000CC52F /* BRALunchCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5164D1C1ABC88000CC52F /* BRALunchCollectionViewCell.m */; };
+		EDC516511C1B94E0000CC52F /* BRALunchCollectionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC516501C1B94E0000CC52F /* BRALunchCollectionLayout.m */; };
+		EDC516541C1BCCF5000CC52F /* BRARestaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC516531C1BCCF5000CC52F /* BRARestaurant.m */; };
+		EDC516581C1C1D26000CC52F /* GlobalVar.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC516571C1C1D26000CC52F /* GlobalVar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,21 +39,15 @@
 		EDC516311C1A9D7E000CC52F /* BRACustomTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BRACustomTabBar.m; path = View/BRACustomTabBar.m; sourceTree = "<group>"; };
 		EDC516341C1AA0DB000CC52F /* UIColor+LunchTyme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIColor+LunchTyme.h"; path = "Extpand/UIColor+LunchTyme.h"; sourceTree = "<group>"; };
 		EDC516351C1AA0F6000CC52F /* UIColor+LunchTyme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+LunchTyme.m"; path = "Extpand/UIColor+LunchTyme.m"; sourceTree = "<group>"; };
-		EDC516391C1AA81B000CC52F /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPSessionManager.h; path = External/AFNetworking/AFHTTPSessionManager.h; sourceTree = "<group>"; };
-		EDC5163A1C1AA81B000CC52F /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPSessionManager.m; path = External/AFNetworking/AFHTTPSessionManager.m; sourceTree = "<group>"; };
-		EDC5163B1C1AA81B000CC52F /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFNetworking.h; path = External/AFNetworking/AFNetworking.h; sourceTree = "<group>"; };
-		EDC5163C1C1AA81B000CC52F /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFNetworkReachabilityManager.h; path = External/AFNetworking/AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
-		EDC5163D1C1AA81B000CC52F /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFNetworkReachabilityManager.m; path = External/AFNetworking/AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
-		EDC5163E1C1AA81B000CC52F /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFSecurityPolicy.h; path = External/AFNetworking/AFSecurityPolicy.h; sourceTree = "<group>"; };
-		EDC5163F1C1AA81B000CC52F /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFSecurityPolicy.m; path = External/AFNetworking/AFSecurityPolicy.m; sourceTree = "<group>"; };
-		EDC516401C1AA81B000CC52F /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFURLRequestSerialization.h; path = External/AFNetworking/AFURLRequestSerialization.h; sourceTree = "<group>"; };
-		EDC516411C1AA81B000CC52F /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFURLRequestSerialization.m; path = External/AFNetworking/AFURLRequestSerialization.m; sourceTree = "<group>"; };
-		EDC516421C1AA81B000CC52F /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFURLResponseSerialization.h; path = External/AFNetworking/AFURLResponseSerialization.h; sourceTree = "<group>"; };
-		EDC516431C1AA81B000CC52F /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFURLResponseSerialization.m; path = External/AFNetworking/AFURLResponseSerialization.m; sourceTree = "<group>"; };
-		EDC516441C1AA81B000CC52F /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFURLSessionManager.h; path = External/AFNetworking/AFURLSessionManager.h; sourceTree = "<group>"; };
-		EDC516451C1AA81B000CC52F /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFURLSessionManager.m; path = External/AFNetworking/AFURLSessionManager.m; sourceTree = "<group>"; };
 		EDC5164C1C1ABC1D000CC52F /* BRALunchCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BRALunchCollectionViewCell.h; path = View/BRALunchCollectionViewCell.h; sourceTree = "<group>"; };
 		EDC5164D1C1ABC88000CC52F /* BRALunchCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BRALunchCollectionViewCell.m; path = View/BRALunchCollectionViewCell.m; sourceTree = "<group>"; };
+		EDC5164F1C1B94C2000CC52F /* BRALunchCollectionLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BRALunchCollectionLayout.h; path = View/BRALunchCollectionLayout.h; sourceTree = "<group>"; };
+		EDC516501C1B94E0000CC52F /* BRALunchCollectionLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BRALunchCollectionLayout.m; path = View/BRALunchCollectionLayout.m; sourceTree = "<group>"; };
+		EDC516521C1BCCE2000CC52F /* BRARestaurant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BRARestaurant.h; path = Model/BRARestaurant.h; sourceTree = "<group>"; };
+		EDC516531C1BCCF5000CC52F /* BRARestaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BRARestaurant.m; path = Model/BRARestaurant.m; sourceTree = "<group>"; };
+		EDC516551C1BE783000CC52F /* BRAPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BRAPrefixHeader.pch; sourceTree = "<group>"; };
+		EDC516561C1C1D09000CC52F /* GlobalVar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GlobalVar.h; path = Extpand/GlobalVar.h; sourceTree = "<group>"; };
+		EDC516571C1C1D26000CC52F /* GlobalVar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GlobalVar.m; path = Extpand/GlobalVar.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +80,6 @@
 		EDC5160F1C1A9981000CC52F /* LunchTyme */ = {
 			isa = PBXGroup;
 			children = (
-				EDC516371C1AA7FB000CC52F /* External */,
 				EDC516331C1AA0BB000CC52F /* Expand */,
 				EDC516291C1A9A03000CC52F /* Controller */,
 				EDC516281C1A99FE000CC52F /* View */,
@@ -109,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				EDC516111C1A9981000CC52F /* main.m */,
+				EDC516551C1BE783000CC52F /* BRAPrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -116,6 +107,8 @@
 		EDC516271C1A99F6000CC52F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EDC516521C1BCCE2000CC52F /* BRARestaurant.h */,
+				EDC516531C1BCCF5000CC52F /* BRARestaurant.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -127,6 +120,8 @@
 				EDC516311C1A9D7E000CC52F /* BRACustomTabBar.m */,
 				EDC5164C1C1ABC1D000CC52F /* BRALunchCollectionViewCell.h */,
 				EDC5164D1C1ABC88000CC52F /* BRALunchCollectionViewCell.m */,
+				EDC5164F1C1B94C2000CC52F /* BRALunchCollectionLayout.h */,
+				EDC516501C1B94E0000CC52F /* BRALunchCollectionLayout.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -147,36 +142,10 @@
 			children = (
 				EDC516341C1AA0DB000CC52F /* UIColor+LunchTyme.h */,
 				EDC516351C1AA0F6000CC52F /* UIColor+LunchTyme.m */,
+				EDC516561C1C1D09000CC52F /* GlobalVar.h */,
+				EDC516571C1C1D26000CC52F /* GlobalVar.m */,
 			);
 			name = Expand;
-			sourceTree = "<group>";
-		};
-		EDC516371C1AA7FB000CC52F /* External */ = {
-			isa = PBXGroup;
-			children = (
-				EDC516381C1AA809000CC52F /* AFNetworking */,
-			);
-			name = External;
-			sourceTree = "<group>";
-		};
-		EDC516381C1AA809000CC52F /* AFNetworking */ = {
-			isa = PBXGroup;
-			children = (
-				EDC516391C1AA81B000CC52F /* AFHTTPSessionManager.h */,
-				EDC5163A1C1AA81B000CC52F /* AFHTTPSessionManager.m */,
-				EDC5163B1C1AA81B000CC52F /* AFNetworking.h */,
-				EDC5163C1C1AA81B000CC52F /* AFNetworkReachabilityManager.h */,
-				EDC5163D1C1AA81B000CC52F /* AFNetworkReachabilityManager.m */,
-				EDC5163E1C1AA81B000CC52F /* AFSecurityPolicy.h */,
-				EDC5163F1C1AA81B000CC52F /* AFSecurityPolicy.m */,
-				EDC516401C1AA81B000CC52F /* AFURLRequestSerialization.h */,
-				EDC516411C1AA81B000CC52F /* AFURLRequestSerialization.m */,
-				EDC516421C1AA81B000CC52F /* AFURLResponseSerialization.h */,
-				EDC516431C1AA81B000CC52F /* AFURLResponseSerialization.m */,
-				EDC516441C1AA81B000CC52F /* AFURLSessionManager.h */,
-				EDC516451C1AA81B000CC52F /* AFURLSessionManager.m */,
-			);
-			name = AFNetworking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,17 +219,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDC516151C1A9981000CC52F /* AppDelegate.m in Sources */,
-				EDC516481C1AA81B000CC52F /* AFSecurityPolicy.m in Sources */,
 				EDC516361C1AA0F6000CC52F /* UIColor+LunchTyme.m in Sources */,
 				EDC5162C1C1A9A59000CC52F /* BRALunchViewController.m in Sources */,
-				EDC5164A1C1AA81B000CC52F /* AFURLResponseSerialization.m in Sources */,
+				EDC516541C1BCCF5000CC52F /* BRARestaurant.m in Sources */,
+				EDC516581C1C1D26000CC52F /* GlobalVar.m in Sources */,
 				EDC516121C1A9981000CC52F /* main.m in Sources */,
 				EDC5164E1C1ABC88000CC52F /* BRALunchCollectionViewCell.m in Sources */,
 				EDC516321C1A9D7E000CC52F /* BRACustomTabBar.m in Sources */,
-				EDC516461C1AA81B000CC52F /* AFHTTPSessionManager.m in Sources */,
-				EDC516491C1AA81B000CC52F /* AFURLRequestSerialization.m in Sources */,
-				EDC5164B1C1AA81B000CC52F /* AFURLSessionManager.m in Sources */,
-				EDC516471C1AA81B000CC52F /* AFNetworkReachabilityManager.m in Sources */,
+				EDC516511C1B94E0000CC52F /* BRALunchCollectionLayout.m in Sources */,
 				EDC5162F1C1A9AD6000CC52F /* BRAInternetsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,6 +339,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LunchTyme/BRAPrefixHeader.pch";
 				INFOPLIST_FILE = LunchTyme/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.likers33.LunchTyme;
@@ -384,6 +352,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LunchTyme/BRAPrefixHeader.pch";
 				INFOPLIST_FILE = LunchTyme/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.likers33.LunchTyme;
