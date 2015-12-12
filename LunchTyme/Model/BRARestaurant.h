@@ -20,6 +20,22 @@
 //Restaurant category type
 @property (nonatomic, copy) NSString *type;
 
+//Restaurant phone number
+@property (nonatomic, copy) NSString *phone;
+
+//Restaurant twitter id
+@property (nonatomic, copy) NSString *twitter;
+
+//Restaurant facebook id
+@property (nonatomic, copy) NSString *facebook;
+
+//Restaurant location dic
+@property (nonatomic, strong) NSDictionary *locationDic;
+
+@property (nonatomic, assign) BOOL noContact;
+@property (nonatomic, assign) BOOL hasTwitter;
+@property (nonatomic, assign) BOOL hasFacebook;
+
 -(instancetype)initWithDic:(NSDictionary *)dic;
 
 @end

@@ -10,6 +10,8 @@
 
 @interface UIColor (LTColor)
 
-+ (UIColor *)LTNavGreen;
++ (UIColor *)BRANavGreen;
++ (UIColor *)BRANavGreenDark;
++ (UIColor *)BRATabDark;
 
 @end

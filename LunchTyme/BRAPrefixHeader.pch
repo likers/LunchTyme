@@ -16,8 +16,10 @@
 
 #ifdef __OBJC__
     #import "GlobalVar.h"
+    #import "UIColor+LunchTyme.h"
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import <MapKit/MapKit.h>
 #endif
 
 #define DEVICE_HEIGHT [[UIScreen mainScreen] bounds].size.height

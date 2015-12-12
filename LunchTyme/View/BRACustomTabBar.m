@@ -11,7 +11,7 @@
 
 @implementation BRACustomTabBar
 
--(CGSize)sizeThatFits:(CGSize)size
+- (CGSize)sizeThatFits:(CGSize)size
 {
     CGSize sizeThatFits = [super sizeThatFits:size];
     sizeThatFits.height = 50;

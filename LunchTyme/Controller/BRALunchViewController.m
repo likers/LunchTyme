@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BRALunchViewController.h"
 #import "BRALunchCollectionViewCell.h"
+#import "BRALunchDetailViewController.h"
 
 @implementation BRALunchViewController
 
@@ -19,7 +20,7 @@
     self = [super init];
     if (self)
     {
-        
+        self.view.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -27,18 +28,35 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.tabBarController.tabBar setBarTintColor:[UIColor BRATabDark]];
     [self initNavigationBar];
-    [self getJsonData];
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"Restaurants"])
+    {
+        NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"Restaurants"];
+        self.resultArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    } else
+    {
+        [self getJsonData];
+    }
 }
 
 - (void)initNavigationBar
 {
-    self.navigationItem.title = @"Lunch";
+    //set bar tint color
+    [self.navigationController.navigationBar setBarTintColor:[UIColor BRANavGreen]];
+    
+    //set title
+    self.navigationItem.title = @"Lunch Tyme";
     [self.navigationController.navigationBar setTitleTextAttributes:@{ NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont fontWithName:@"AvenirNext-DemiBold" size:17.0f] }];
     
+    //init collectionview
     self.mCollectionView.backgroundColor = [UIColor whiteColor];
     [self.mCollectionView registerClass:[BRALunchCollectionViewCell class]
             forCellWithReuseIdentifier:@"customCell"];
+    
+    //hide navigation text
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
 }
 
 - (void)getJsonData
@@ -59,7 +77,13 @@
                     
                     self.resultArray = [[NSArray alloc] initWithArray:resultDic[@"restaurants"]];
                     
-                    if (!jsonError)
+                    NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:self.resultArray];
+                    [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"Restaurants"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    
+                    [mCollectionView reloadData];
+                    
+                    if (jsonError)
                     {
                         [self dataError:jsonError];
                     }
@@ -96,7 +120,15 @@
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(DEVICE_WIDTH, 180.f);
+    return CGSizeMake(DEVICE_WIDTH, DEVICE_WIDTH*9/16);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    BRALunchDetailViewController *detailVC = [[BRALunchDetailViewController alloc] init];
+    detailVC.mRestaurant = [[BRARestaurant alloc] initWithDic:self.resultArray[indexPath.section]];
+    UINavigationController *nvc = self.navigationController;
+    [nvc pushViewController:detailVC animated:YES];
 }
 
 - (void)dataError:(NSError *) error

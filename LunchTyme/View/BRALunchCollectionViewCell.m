@@ -43,6 +43,8 @@
     _restaurant = restaurant;
     [self initBackgroundImageView];
     [self initCellGradientBackgroundView];
+    [self initCategoryLabelView];
+    [self initNameLabelView];
 }
 
 - (void)initBackgroundImageView
@@ -67,11 +69,39 @@
     self.cellGradientBackgroundView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.backgroundImageView addSubview:self.cellGradientBackgroundView];
     
-//    [self.cellGradientBackgroundView.heightAnchor constraintEqualToConstant:116].active = true;
-//    [self.cellGradientBackgroundView.topAnchor constraintEqualToAnchor:self.backgroundImageView.topAnchor].active = true;
     [self.cellGradientBackgroundView.leftAnchor constraintEqualToAnchor:self.backgroundImageView.leftAnchor].active = true;
     [self.cellGradientBackgroundView.bottomAnchor constraintEqualToAnchor:self.backgroundImageView.bottomAnchor].active = true;
     [self.cellGradientBackgroundView.rightAnchor constraintEqualToAnchor:self.backgroundImageView.rightAnchor].active = true;
+}
+
+- (void)initCategoryLabelView
+{
+    self.categoryLabel = [[UILabel alloc] init];
+    self.categoryLabel.text = _restaurant.type;
+    self.categoryLabel.textColor = [UIColor whiteColor];
+    self.categoryLabel.textAlignment = NSTextAlignmentLeft;
+    self.categoryLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:12];
+    self.categoryLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.backgroundImageView addSubview:self.categoryLabel];
+    
+    [self.categoryLabel.leftAnchor constraintEqualToAnchor:self.backgroundImageView.leftAnchor constant:12].active = true;
+    [self.categoryLabel.bottomAnchor constraintEqualToAnchor:self.backgroundImageView.bottomAnchor constant:-6].active = true;
+    [self.categoryLabel.rightAnchor constraintEqualToAnchor:self.backgroundImageView.rightAnchor].active = true;
+}
+
+- (void)initNameLabelView
+{
+    self.nameLabel = [[UILabel alloc] init];
+    self.nameLabel.text = _restaurant.name;
+    self.nameLabel.textColor = [UIColor whiteColor];
+    self.nameLabel.textAlignment = NSTextAlignmentLeft;
+    self.nameLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:16];
+    self.nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.backgroundImageView addSubview:self.nameLabel];
+    
+    [self.nameLabel.leftAnchor constraintEqualToAnchor:self.backgroundImageView.leftAnchor constant:12].active = true;
+    [self.nameLabel.bottomAnchor constraintEqualToAnchor:self.categoryLabel.topAnchor constant:-6].active = true;
+    [self.nameLabel.rightAnchor constraintEqualToAnchor:self.backgroundImageView.rightAnchor].active = true;
 }
 
 - (void)downloadImageFromUrlString:(NSString *)urlstring

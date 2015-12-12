@@ -25,6 +25,8 @@
     [tabBarItemLunch setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"AvenirNext-Regular" size:10.0f], NSFontAttributeName, nil] forState:UIControlStateNormal];
     [tabBarItemInternets setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"AvenirNext-Regular" size:10.0f], NSFontAttributeName, nil] forState:UIControlStateNormal];
     
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
     return YES;
 }
 

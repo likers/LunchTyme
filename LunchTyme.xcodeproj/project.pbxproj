@@ -20,6 +20,7 @@
 		EDC516511C1B94E0000CC52F /* BRALunchCollectionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC516501C1B94E0000CC52F /* BRALunchCollectionLayout.m */; };
 		EDC516541C1BCCF5000CC52F /* BRARestaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC516531C1BCCF5000CC52F /* BRARestaurant.m */; };
 		EDC516581C1C1D26000CC52F /* GlobalVar.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC516571C1C1D26000CC52F /* GlobalVar.m */; };
+		EDC5165B1C1C8709000CC52F /* BRALunchDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5165A1C1C8709000CC52F /* BRALunchDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,8 @@
 		EDC516551C1BE783000CC52F /* BRAPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BRAPrefixHeader.pch; sourceTree = "<group>"; };
 		EDC516561C1C1D09000CC52F /* GlobalVar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GlobalVar.h; path = Extpand/GlobalVar.h; sourceTree = "<group>"; };
 		EDC516571C1C1D26000CC52F /* GlobalVar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GlobalVar.m; path = Extpand/GlobalVar.m; sourceTree = "<group>"; };
+		EDC516591C1C86D1000CC52F /* BRALunchDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BRALunchDetailViewController.h; path = Controller/BRALunchDetailViewController.h; sourceTree = "<group>"; };
+		EDC5165A1C1C8709000CC52F /* BRALunchDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BRALunchDetailViewController.m; path = Controller/BRALunchDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +134,8 @@
 			children = (
 				EDC5162A1C1A9A40000CC52F /* BRALunchViewController.h */,
 				EDC5162B1C1A9A59000CC52F /* BRALunchViewController.m */,
+				EDC516591C1C86D1000CC52F /* BRALunchDetailViewController.h */,
+				EDC5165A1C1C8709000CC52F /* BRALunchDetailViewController.m */,
 				EDC5162D1C1A9AC0000CC52F /* BRAInternetsViewController.h */,
 				EDC5162E1C1A9AD6000CC52F /* BRAInternetsViewController.m */,
 			);
@@ -227,6 +232,7 @@
 				EDC5164E1C1ABC88000CC52F /* BRALunchCollectionViewCell.m in Sources */,
 				EDC516321C1A9D7E000CC52F /* BRACustomTabBar.m in Sources */,
 				EDC516511C1B94E0000CC52F /* BRALunchCollectionLayout.m in Sources */,
+				EDC5165B1C1C8709000CC52F /* BRALunchDetailViewController.m in Sources */,
 				EDC5162F1C1A9AD6000CC52F /* BRAInternetsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
