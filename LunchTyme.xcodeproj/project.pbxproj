@@ -21,6 +21,7 @@
 		EDC516541C1BCCF5000CC52F /* BRARestaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC516531C1BCCF5000CC52F /* BRARestaurant.m */; };
 		EDC516581C1C1D26000CC52F /* GlobalVar.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC516571C1C1D26000CC52F /* GlobalVar.m */; };
 		EDC5165B1C1C8709000CC52F /* BRALunchDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5165A1C1C8709000CC52F /* BRALunchDetailViewController.m */; };
+		EDC516601C1D19F3000CC52F /* ajaxHandler.js in Resources */ = {isa = PBXBuildFile; fileRef = EDC5165F1C1D19F3000CC52F /* ajaxHandler.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		EDC516571C1C1D26000CC52F /* GlobalVar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GlobalVar.m; path = Extpand/GlobalVar.m; sourceTree = "<group>"; };
 		EDC516591C1C86D1000CC52F /* BRALunchDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BRALunchDetailViewController.h; path = Controller/BRALunchDetailViewController.h; sourceTree = "<group>"; };
 		EDC5165A1C1C8709000CC52F /* BRALunchDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BRALunchDetailViewController.m; path = Controller/BRALunchDetailViewController.m; sourceTree = "<group>"; };
+		EDC5165F1C1D19F3000CC52F /* ajaxHandler.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ajaxHandler.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			children = (
 				EDC516111C1A9981000CC52F /* main.m */,
 				EDC516551C1BE783000CC52F /* BRAPrefixHeader.pch */,
+				EDC5165F1C1D19F3000CC52F /* ajaxHandler.js */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				EDC516201C1A9981000CC52F /* LaunchScreen.storyboard in Resources */,
 				EDC5161D1C1A9981000CC52F /* Assets.xcassets in Resources */,
 				EDC5161B1C1A9981000CC52F /* Main.storyboard in Resources */,
+				EDC516601C1D19F3000CC52F /* ajaxHandler.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,8 +6,13 @@
 //  Copyright © 2015 likers33. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
-@interface BRAInternetsViewController : UIViewController
+@interface BRAInternetsViewController : UIViewController<WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandler>
+
+@property (nonatomic, strong) WKWebView *mWebView;
+@property (nonatomic, strong) WKWebViewConfiguration *mConfig;
+@property (nonatomic, copy) NSString *homeURL;
+@property (nonatomic, strong) UIProgressView *progressView;
 
 @end
