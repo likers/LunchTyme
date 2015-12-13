@@ -52,8 +52,15 @@
     {
         self.name = dic[@"name"];
         self.type = dic[@"category"];
-        self.imageUrlString = dic[@"backgroundImageURL"];
-        if (![dic[@"contact"] isKindOfClass:[NSNull class]])
+        if (dic[@"backgroundImageURL"])
+        {
+            self.imageUrlString = dic[@"backgroundImageURL"];
+        }
+        if (dic[@"location"])
+        {
+            self.locationDic = dic[@"location"];
+        }
+        if (dic[@"contact"] && ![dic[@"contact"] isKindOfClass:[NSNull class]])
         {
             self.noContact = NO;
             self.phone = dic[@"contact"][@"formattedPhone"];
@@ -83,7 +90,7 @@
         {
             self.noContact = YES;
         }
-        self.locationDic = dic[@"location"];
+        
     }
     return self;
 }

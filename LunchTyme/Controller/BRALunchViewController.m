@@ -11,6 +11,7 @@
 #import "BRALunchCollectionViewCell.h"
 #import "BRALunchDetailViewController.h"
 
+
 @implementation BRALunchViewController
 
 @synthesize resultArray, previousOrientation, mCollectionView;
@@ -37,6 +38,7 @@
         self.resultArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     } else
     {
+        [self buildPlaceholderArray];
         [self getJsonData];
     }
 }
@@ -71,7 +73,9 @@
 
 - (void)getJsonData
 {
-    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: self delegateQueue: [NSOperationQueue mainQueue]];
     [[session dataTaskWithURL:[NSURL URLWithString:@"http://sandbox.bottlerocketapps.com/BR_iOS_CodingExam_2015_Server/restaurants.json"]
             completionHandler:^(NSData *data,
                                 NSURLResponse *response,
@@ -108,7 +112,7 @@
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         return resultArray.count%2 == 0 ? resultArray.count/2 : resultArray.count/2+1;
     } else
@@ -119,7 +123,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         return (section+1)*2 <= resultArray.count ? 2 : 1;
     } else
@@ -134,7 +138,7 @@
     BRALunchCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"customCell"
                                               forIndexPath:indexPath];
     BRARestaurant *restaurant;
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         restaurant = [[BRARestaurant alloc] initWithDic:self.resultArray[indexPath.section*2+indexPath.row]];
     } else
@@ -150,7 +154,7 @@
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         return CGSizeMake((DEVICE_WIDTH-10)/2, (DEVICE_WIDTH-10)*9/32);
     } else
@@ -162,7 +166,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BRALunchDetailViewController *detailVC = [[BRALunchDetailViewController alloc] init];
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         detailVC.mRestaurant = [[BRARestaurant alloc] initWithDic:self.resultArray[indexPath.section*2+indexPath.row]];
     } else
@@ -176,13 +180,25 @@
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                duration:(NSTimeInterval)duration
 {
-    
     [self.mCollectionView.collectionViewLayout invalidateLayout];
 }
 
 - (void)dataError:(NSError *) error
 {
     NSLog(@"%@", [error localizedDescription]);
+}
+
+- (void)buildPlaceholderArray
+{
+    NSDictionary *dic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                         @"Restaurant Name",@"name",
+                         @"Category Type", @"category"
+                         ,nil];
+    NSMutableArray *placeholder = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 15; i++) {
+        [placeholder addObject:dic];
+    }
+    self.resultArray = placeholder;
 }
 
 - (void)didReceiveMemoryWarning
