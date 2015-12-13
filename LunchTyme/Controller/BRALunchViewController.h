@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "BRARestaurant.h"
 
-@interface BRALunchViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface BRALunchViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) NSArray *resultArray;
+@property (nonatomic, assign) UIDeviceOrientation previousOrientation;
 @property (weak, nonatomic) IBOutlet UICollectionView *mCollectionView;
 
 @end

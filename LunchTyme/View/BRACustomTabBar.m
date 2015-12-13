@@ -15,7 +15,7 @@
 {
     CGSize sizeThatFits = [super sizeThatFits:size];
     sizeThatFits.height = 50;
-    
+    sizeThatFits.width = DEVICE_WIDTH;
     return sizeThatFits;
 }
 

@@ -21,6 +21,7 @@
     UITabBar *tabBar = tabBarController.tabBar;
     UITabBarItem *tabBarItemLunch = [tabBar.items objectAtIndex:0];
     UITabBarItem *tabBarItemInternets = [tabBar.items objectAtIndex:1];
+    [[UITabBar appearance] setItemWidth:DEVICE_WIDTH/2];
     
     [tabBarItemLunch setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"AvenirNext-Regular" size:10.0f], NSFontAttributeName, nil] forState:UIControlStateNormal];
     [tabBarItemInternets setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"AvenirNext-Regular" size:10.0f], NSFontAttributeName, nil] forState:UIControlStateNormal];

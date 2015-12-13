@@ -30,7 +30,8 @@ static GlobalVar *instance = nil;
 - (instancetype)init
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         self.imageCache = [[NSCache alloc] init];
     }
     return self;

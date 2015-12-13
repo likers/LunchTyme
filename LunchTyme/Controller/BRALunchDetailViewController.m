@@ -165,7 +165,8 @@
     [areaLabel.leftAnchor constraintEqualToAnchor:contentView.leftAnchor constant:12].active = true;
     [areaLabel.rightAnchor constraintEqualToAnchor:contentView.rightAnchor constant:-12].active = true;
     
-    if (!_mRestaurant.noContact) {
+    if (!_mRestaurant.noContact)
+    {
         [self initContactUnder:areaLabel];
     }
 }
@@ -187,7 +188,8 @@
     
     //Restaurant twitter id label
     UILabel *twitterLabel = [[UILabel alloc] init];
-    if (_mRestaurant.hasTwitter) {
+    if (_mRestaurant.hasTwitter)
+    {
         twitterLabel.text = [NSString stringWithFormat:@"Twitter: @%@", _mRestaurant.twitter];
         twitterLabel.textColor = [UIColor BRATabDark];
         twitterLabel.textAlignment = NSTextAlignmentLeft;
@@ -200,7 +202,8 @@
         [twitterLabel.rightAnchor constraintEqualToAnchor:contentView.rightAnchor constant:-12].active = true;
     }
     
-    if (_mRestaurant.hasFacebook) {
+    if (_mRestaurant.hasFacebook)
+    {
         //Restaurant facebook name label
         UILabel *facebookLabel = [[UILabel alloc] init];
         facebookLabel.text = [NSString stringWithFormat:@"Facebook: %@", _mRestaurant.facebook];
@@ -210,7 +213,8 @@
         [contentView addSubview:facebookLabel];
         
         facebookLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        if (_mRestaurant.hasTwitter) {
+        if (_mRestaurant.hasTwitter)
+        {
             [facebookLabel.topAnchor constraintEqualToAnchor:twitterLabel.bottomAnchor constant:6].active = true;
         } else
         {
@@ -221,6 +225,11 @@
         [facebookLabel.rightAnchor constraintEqualToAnchor:contentView.rightAnchor constant:-12].active = true;
     }
     
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
 }
 
 @end

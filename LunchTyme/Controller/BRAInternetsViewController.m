@@ -21,7 +21,8 @@ typedef NS_ENUM(NSInteger, navActions)
 
 @synthesize mWebView, mConfig, homeURL, progressView;
 
-- (void)dealloc {
+- (void)dealloc
+{
     [self.mWebView removeObserver:self forKeyPath:@"estimatedProgress"];
     [self.mWebView setNavigationDelegate:nil];
     [self.mWebView setUIDelegate:nil];
@@ -163,15 +164,18 @@ typedef NS_ENUM(NSInteger, navActions)
     [mWebView loadRequest:requestObj];
 }
 
-- (void) addUserScriptToUserContentController:(WKUserContentController *) userContentController{
+- (void) addUserScriptToUserContentController:(WKUserContentController *) userContentController
+{
     NSString *jsHandler = [NSString stringWithContentsOfURL:[[NSBundle mainBundle]URLForResource:@"ajaxHandler" withExtension:@"js"] encoding:NSUTF8StringEncoding error:NULL];
     WKUserScript *ajaxHandler = [[WKUserScript alloc]initWithSource:jsHandler injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
     [userContentController addScriptMessageHandler:self name:@"callbackHandler"];
     [userContentController addUserScript:ajaxHandler];
 }
 
-- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
-    if([message.name isEqualToString:@"callbackHandler"]) {
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
+{
+    if([message.name isEqualToString:@"callbackHandler"])
+    {
         [self.navigationController.navigationBar viewWithTag:backAction].alpha = mWebView.canGoBack ? 1 : 0.5;
         [self.navigationController.navigationBar viewWithTag:forwardAction].alpha = mWebView.canGoForward ? 1 : 0.5;
     }
@@ -206,7 +210,8 @@ typedef NS_ENUM(NSInteger, navActions)
 
 - (void)navButtonAction:(UIButton *)button
 {
-    switch (button.tag) {
+    switch (button.tag)
+    {
         case backAction:
             [self navBack];
             break;
@@ -246,6 +251,11 @@ typedef NS_ENUM(NSInteger, navActions)
     {
         [self.navigationController.navigationBar viewWithTag:forwardAction].alpha = 0.5;
     }
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
 }
 
 @end
