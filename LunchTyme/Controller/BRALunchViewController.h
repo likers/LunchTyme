@@ -14,5 +14,6 @@
 @property (nonatomic, strong) NSArray *resultArray;
 @property (nonatomic, assign) UIDeviceOrientation previousOrientation;
 @property (weak, nonatomic) IBOutlet UICollectionView *mCollectionView;
+@property (nonatomic, strong) NSMutableArray *annotationArray;
 
 @end

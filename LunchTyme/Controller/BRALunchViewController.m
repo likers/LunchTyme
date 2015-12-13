@@ -10,11 +10,12 @@
 #import "BRALunchViewController.h"
 #import "BRALunchCollectionViewCell.h"
 #import "BRALunchDetailViewController.h"
+#import "BRALunchMapViewController.h"
 
 
 @implementation BRALunchViewController
 
-@synthesize resultArray, previousOrientation, mCollectionView;
+@synthesize resultArray, annotationArray, previousOrientation, mCollectionView;
 
 - (instancetype)init
 {
@@ -42,6 +43,7 @@
     {
         NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"Restaurants"];
         self.resultArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        [self getAnnotationArray];
     } else
     {
         [self buildPlaceholderArray];
@@ -67,6 +69,10 @@
     //set title
     self.navigationItem.title = @"Lunch Tyme";
     [self.navigationController.navigationBar setTitleTextAttributes:@{ NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont fontWithName:@"AvenirNext-DemiBold" size:17.0f] }];
+    
+    //right item
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MapIcon"] style:UIBarButtonItemStylePlain target:self action:@selector(showMap)];
+    self.navigationItem.rightBarButtonItem = rightItem;
     
     //init collectionview
     self.mCollectionView.backgroundColor = [UIColor whiteColor];
@@ -96,6 +102,7 @@
                                                       error:&jsonError];
                     
                     self.resultArray = [[NSArray alloc] initWithArray:resultDic[@"restaurants"]];
+                    [self getAnnotationArray];
                     
                     NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:self.resultArray];
                     [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"Restaurants"];
@@ -232,6 +239,31 @@
 - (void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit
 {
     [self showViewController:viewControllerToCommit sender:self];
+}
+
+#pragma mark - map
+
+- (void)getAnnotationArray
+{
+    self.annotationArray = [[NSMutableArray alloc] init];
+    for (NSDictionary *dic in self.resultArray) {
+        CLLocationCoordinate2D track;
+        track.latitude = [dic[@"location"][@"lat"] doubleValue];
+        track.longitude = [dic[@"location"][@"lng"] doubleValue];
+        
+        MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+        [annotation setTitle:dic[@"name"]];
+        [annotation setCoordinate:track];
+        [self.annotationArray addObject:annotation];
+    }
+}
+
+- (void)showMap
+{
+    BRALunchMapViewController *mapVC = [[BRALunchMapViewController alloc] init];
+    mapVC.annotationArray = self.annotationArray;
+    UINavigationController *nvc = self.navigationController;
+    [nvc pushViewController:mapVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

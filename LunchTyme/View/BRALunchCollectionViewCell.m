@@ -113,6 +113,13 @@
         self.backgroundImageView.image = img;
     } else
     {
+        self.backgroundImageView.alpha = 0;
+        [UIView beginAnimations:@"fadeIn" context:nil];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+        [UIView setAnimationDuration:0.4];
+        self.backgroundImageView.alpha = 1;
+        [UIView commitAnimations];
+        
         NSURLSession *session = [NSURLSession sharedSession];
         [[session dataTaskWithURL:[NSURL URLWithString:urlstring]
                 completionHandler:^(NSData *data,

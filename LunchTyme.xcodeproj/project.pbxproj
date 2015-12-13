@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		ED869A711C1DD9C600F8F09F /* UIButton+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = ED869A701C1DD9C600F8F09F /* UIButton+Extensions.m */; };
+		ED869A741C1DEFA500F8F09F /* BARLunchMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED869A731C1DEFA500F8F09F /* BARLunchMapViewController.m */; };
 		EDC516121C1A9981000CC52F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC516111C1A9981000CC52F /* main.m */; };
 		EDC516151C1A9981000CC52F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC516141C1A9981000CC52F /* AppDelegate.m */; };
 		EDC5161B1C1A9981000CC52F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDC516191C1A9981000CC52F /* Main.storyboard */; };
@@ -27,6 +28,8 @@
 /* Begin PBXFileReference section */
 		ED869A6F1C1DD9B000F8F09F /* UIButton+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIButton+Extensions.h"; path = "Extpand/UIButton+Extensions.h"; sourceTree = "<group>"; };
 		ED869A701C1DD9C600F8F09F /* UIButton+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+Extensions.m"; path = "Extpand/UIButton+Extensions.m"; sourceTree = "<group>"; };
+		ED869A721C1DEF8200F8F09F /* BRALunchMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BRALunchMapViewController.h; path = Controller/BRALunchMapViewController.h; sourceTree = "<group>"; };
+		ED869A731C1DEFA500F8F09F /* BARLunchMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BARLunchMapViewController.m; path = Controller/BARLunchMapViewController.m; sourceTree = "<group>"; };
 		EDC5160D1C1A9981000CC52F /* LunchTyme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LunchTyme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDC516111C1A9981000CC52F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EDC516131C1A9981000CC52F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 				EDC5165A1C1C8709000CC52F /* BRALunchDetailViewController.m */,
 				EDC5162D1C1A9AC0000CC52F /* BRAInternetsViewController.h */,
 				EDC5162E1C1A9AD6000CC52F /* BRAInternetsViewController.m */,
+				ED869A721C1DEF8200F8F09F /* BRALunchMapViewController.h */,
+				ED869A731C1DEFA500F8F09F /* BARLunchMapViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 			files = (
 				EDC516151C1A9981000CC52F /* AppDelegate.m in Sources */,
 				EDC516361C1AA0F6000CC52F /* UIColor+LunchTyme.m in Sources */,
+				ED869A741C1DEFA500F8F09F /* BARLunchMapViewController.m in Sources */,
 				EDC5162C1C1A9A59000CC52F /* BRALunchViewController.m in Sources */,
 				EDC516541C1BCCF5000CC52F /* BRARestaurant.m in Sources */,
 				EDC516581C1C1D26000CC52F /* GlobalVar.m in Sources */,
