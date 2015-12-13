@@ -32,6 +32,12 @@
     [self.tabBarController.tabBar setBarTintColor:[UIColor BRATabDark]];
     [self initNavigationBar];
     
+    // register for 3D Touch (if available)
+    if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable)
+    {
+        [self registerForPreviewingWithDelegate:(id)self sourceView:self.view];
+    }
+    
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"Restaurants"])
     {
         NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"Restaurants"];
@@ -199,6 +205,33 @@
         [placeholder addObject:dic];
     }
     self.resultArray = placeholder;
+}
+
+#pragma mark - 3D touch related
+- (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
+{
+    NSIndexPath *indexPath = [mCollectionView indexPathForItemAtPoint:location];
+    BRALunchCollectionViewCell *cell = [mCollectionView dequeueReusableCellWithReuseIdentifier:@"customCell" forIndexPath:indexPath];
+    
+    BRARestaurant *restaurant;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        restaurant = [[BRARestaurant alloc] initWithDic:self.resultArray[indexPath.section*2+indexPath.row]];
+    } else
+    {
+        restaurant = [[BRARestaurant alloc] initWithDic:self.resultArray[indexPath.section]];
+    }
+    
+    BRALunchDetailViewController *detailVC = [[BRALunchDetailViewController alloc] init];
+    detailVC.mRestaurant = restaurant;
+    detailVC.preferredContentSize = CGSizeMake(0.0, 300);
+    [previewingContext setSourceRect:cell.frame];
+    return detailVC;
+}
+
+- (void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit
+{
+    [self showViewController:viewControllerToCommit sender:self];
 }
 
 - (void)didReceiveMemoryWarning

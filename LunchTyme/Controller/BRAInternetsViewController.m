@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BRAInternetsViewController.h"
+#import "UIButton+Extensions.h"
 
 typedef NS_ENUM(NSInteger, navActions)
 {
@@ -64,6 +65,7 @@ typedef NS_ENUM(NSInteger, navActions)
     [backButton setImage:[UIImage imageNamed:@"WebBack"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(navButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [backButton setBackgroundColor:[UIColor clearColor]];
+    [backButton setHitTestEdgeInsets:UIEdgeInsetsMake(-10, -30, -10, -10)];
     backButton.tag = backAction;
     backButton.alpha = 0.5;
     [leftNavView addSubview:backButton];
@@ -76,6 +78,7 @@ typedef NS_ENUM(NSInteger, navActions)
     [reloadButton setImage:[UIImage imageNamed:@"WebRefresh"] forState:UIControlStateNormal];
     [reloadButton addTarget:self action:@selector(navButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [reloadButton setBackgroundColor:[UIColor clearColor]];
+    [reloadButton setHitTestEdgeInsets:UIEdgeInsetsMake(-10, -10, -10, -10)];
     reloadButton.tag = reloadAction;
     [leftNavView addSubview:reloadButton];
     
@@ -87,6 +90,7 @@ typedef NS_ENUM(NSInteger, navActions)
     [forwardButton setImage:[UIImage imageNamed:@"WebForward"] forState:UIControlStateNormal];
     [forwardButton addTarget:self action:@selector(navButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [forwardButton setBackgroundColor:[UIColor clearColor]];
+    [forwardButton setHitTestEdgeInsets:UIEdgeInsetsMake(-10, -10, -10, -30)];
     forwardButton.tag = forwardAction;
     forwardButton.alpha = 0.5;
     [leftNavView addSubview:forwardButton];
@@ -112,6 +116,7 @@ typedef NS_ENUM(NSInteger, navActions)
     [stopButton setImage:[UIImage imageNamed:@"WebCancel"] forState:UIControlStateNormal];
     [stopButton addTarget:self action:@selector(navButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [stopButton setBackgroundColor:[UIColor clearColor]];
+    [stopButton setHitTestEdgeInsets:UIEdgeInsetsMake(-20, -20, -10, -20)];
     stopButton.tag = stopAction;
     [rightNavView addSubview:stopButton];
     

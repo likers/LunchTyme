@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BRARestaurant.h"
 
-@interface BRALunchViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate, NSURLSessionTaskDelegate>
+@interface BRALunchViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate, NSURLSessionTaskDelegate, UIViewControllerPreviewingDelegate>
 
 @property (nonatomic, strong) NSArray *resultArray;
 @property (nonatomic, assign) UIDeviceOrientation previousOrientation;
