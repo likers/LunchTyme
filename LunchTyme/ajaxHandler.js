@@ -1,4 +1,4 @@
-$( document ).ajaxSend(function( event, request, settings )  {
+$( document ).ajaxComplete(function( event, request, settings )  {
 
       callNativeApp (settings.data);
 

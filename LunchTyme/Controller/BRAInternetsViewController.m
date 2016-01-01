@@ -14,8 +14,7 @@ typedef NS_ENUM(NSInteger, navActions)
 {
     backAction = 1,
     forwardAction = 2,
-    reloadAction = 3,
-    stopAction = 4
+    reloadAction = 3
 };
 
 @implementation BRAInternetsViewController
@@ -107,32 +106,6 @@ typedef NS_ENUM(NSInteger, navActions)
     [leftNavView.leftAnchor constraintEqualToAnchor:self.navigationController.navigationBar.leftAnchor].active = true;
     [leftNavView.bottomAnchor constraintEqualToAnchor:self.navigationController.navigationBar.bottomAnchor].active = true;
     [leftNavView.widthAnchor constraintEqualToConstant:DEVICE_WIDTH/2].active = true;
-    
-    //set right barButtonItems
-    UIView *rightNavView = [[UIView alloc] init];
-    rightNavView.backgroundColor = [UIColor clearColor];
-    
-    UIButton *stopButton = [[UIButton alloc] init];
-    [stopButton setImage:[UIImage imageNamed:@"WebCancel"] forState:UIControlStateNormal];
-    [stopButton addTarget:self action:@selector(navButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [stopButton setBackgroundColor:[UIColor clearColor]];
-    [stopButton setHitTestEdgeInsets:UIEdgeInsetsMake(-20, -20, -10, -20)];
-    stopButton.tag = stopAction;
-    stopButton.alpha = 0;
-    [rightNavView addSubview:stopButton];
-    
-    stopButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [stopButton.centerYAnchor constraintEqualToAnchor:rightNavView.centerYAnchor].active = true;
-    [stopButton.rightAnchor constraintEqualToAnchor:rightNavView.rightAnchor constant:-32].active = true;
-    
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightNavView];
-    self.navigationItem.rightBarButtonItem = rightItem;
-    
-    rightNavView.translatesAutoresizingMaskIntoConstraints = NO;
-    [rightNavView.topAnchor constraintEqualToAnchor:self.navigationController.navigationBar.topAnchor].active = true;
-    [rightNavView.rightAnchor constraintEqualToAnchor:self.navigationController.navigationBar.rightAnchor].active = true;
-    [rightNavView.bottomAnchor constraintEqualToAnchor:self.navigationController.navigationBar.bottomAnchor].active = true;
-    [rightNavView.widthAnchor constraintEqualToConstant:DEVICE_WIDTH/2].active = true;
 }
 
 - (void)initProgressView
@@ -220,15 +193,27 @@ typedef NS_ENUM(NSInteger, navActions)
     {
         case backAction:
             [self navBack];
+            if (mWebView.canGoBack && ![[mWebView.URL absoluteString] isEqualToString:[NSString stringWithFormat:@"%@/",self.homeURL]])
+            {
+                NSLog(@"%@",[mWebView.URL absoluteString]);
+                [self.navigationController.navigationBar viewWithTag:backAction].alpha = 1;
+            } else
+            {
+                [self.navigationController.navigationBar viewWithTag:backAction].alpha = 0.5;
+            }
             break;
         case forwardAction:
             [self navForward];
+            if (mWebView.canGoForward)
+            {
+                [self.navigationController.navigationBar viewWithTag:forwardAction].alpha = 1;
+            } else
+            {
+                [self.navigationController.navigationBar viewWithTag:forwardAction].alpha = 0.5;
+            }
             break;
         case reloadAction:
             [mWebView reload];
-            break;
-        case stopAction:
-            [mWebView stopLoading];
             break;
         default:
             break;
@@ -241,9 +226,6 @@ typedef NS_ENUM(NSInteger, navActions)
     {
         [self.mWebView goBack];
         [self.navigationController.navigationBar viewWithTag:forwardAction].alpha = 1;
-    } else
-    {
-        [self.navigationController.navigationBar viewWithTag:backAction].alpha = 0.5;
     }
 }
 
@@ -253,9 +235,6 @@ typedef NS_ENUM(NSInteger, navActions)
     {
         [self.mWebView goForward];
         [self.navigationController.navigationBar viewWithTag:backAction].alpha = 1;
-    } else
-    {
-        [self.navigationController.navigationBar viewWithTag:forwardAction].alpha = 0.5;
     }
 }
 
