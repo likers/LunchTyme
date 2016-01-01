@@ -150,7 +150,12 @@
 {
     BRALunchCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"customCell"
                                               forIndexPath:indexPath];
+    
+    cell.backgroundImageView.image = nil;
+    cell.backgroundImageView.alpha = 0;
+    
     BRARestaurant *restaurant;
+    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         restaurant = [[BRARestaurant alloc] initWithDic:self.resultArray[indexPath.section*2+indexPath.row]];
@@ -159,9 +164,57 @@
         restaurant = [[BRARestaurant alloc] initWithDic:self.resultArray[indexPath.section]];
     }
     
+    UIImage *img = [[GlobalVar getInstance] getCachedImageForKey:restaurant.imageUrlString];
+    if (img)
+    {
+        cell.backgroundImageView.image = img;
+        [UIView animateWithDuration:0.4 animations:^{
+            cell.backgroundImageView.alpha = 1;
+        } completion:nil];
+    } else
+    {
+        NSURLSession *session = [NSURLSession sharedSession];
+        [[session dataTaskWithURL:[NSURL URLWithString:restaurant.imageUrlString]
+                completionHandler:^(NSData *data,
+                                    NSURLResponse *response,
+                                    NSError *error) {
+                    if (data)
+                    {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            cell.backgroundImageView.image = [UIImage imageWithData:data]  ;
+                            [[GlobalVar getInstance] cacheImage:cell.backgroundImageView.image forKey:restaurant.imageUrlString];
+                            
+                            [UIView animateWithDuration:0.4 animations:^{
+                                cell.backgroundImageView.alpha = 1;
+                            } completion:nil];
+                        });
+                        
+                    } else
+                    {
+                        cell.backgroundImageView.image = [UIImage imageNamed:@"Placeholder"];
+                        [UIView animateWithDuration:0.4 animations:^{
+                            cell.backgroundImageView.alpha = 1;
+                        } completion:nil];
+                    }
+                }] resume];
+    }
+    
     cell.restaurant = restaurant;
+    
     return cell;
 }
+
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    CGFloat viewHeight = scrollView.frame.size.height + scrollView.contentInset.top;
+//    for (BRALunchCollectionViewCell *cell in [self.mCollectionView visibleCells]) {
+//        CGFloat y = cell.center.y - scrollView.contentOffset.y;
+//        CGFloat p = y - viewHeight / 2;
+//        CGFloat scale = cos(p / viewHeight * 0.8) * 0.95;
+//        [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState animations:^{
+//            cell.backgroundImageView.transform = CGAffineTransformMakeScale(scale, scale);
+//        } completion:NULL];
+//    }
+//}
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout

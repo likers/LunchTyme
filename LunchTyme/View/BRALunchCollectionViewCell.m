@@ -13,7 +13,7 @@
 
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *categoryLabel;
-@property (nonatomic, strong) UIImageView *backgroundImageView;
+
 @property (nonatomic, strong) UIImageView *cellGradientBackgroundView;
 
 @end
@@ -29,6 +29,10 @@
     if (self)
     {
         self.backgroundColor = [UIColor whiteColor];
+        [self initBackgroundImageView];
+        [self initCellGradientBackgroundView];
+        [self initCategoryLabelView];
+        [self initNameLabelView];
     }
     return self;
 }
@@ -42,10 +46,8 @@
 - (void)setRestaurant:(BRARestaurant *)restaurant
 {
     _restaurant = restaurant;
-    [self initBackgroundImageView];
-    [self initCellGradientBackgroundView];
-    [self initCategoryLabelView];
-    [self initNameLabelView];
+    self.categoryLabel.text = restaurant.type;
+    self.nameLabel.text = restaurant.name;
 }
 
 - (void)initBackgroundImageView
@@ -53,13 +55,13 @@
     self.backgroundImageView = [[UIImageView alloc] init];
     self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.backgroundImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.backgroundImageView.image = nil;
     [self addSubview:self.backgroundImageView];
     
     [self.backgroundImageView.topAnchor constraintEqualToAnchor:self.topAnchor].active = true;
     [self.backgroundImageView.leftAnchor constraintEqualToAnchor:self.leftAnchor].active = true;
     [self.backgroundImageView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = true;
     [self.backgroundImageView.rightAnchor constraintEqualToAnchor:self.rightAnchor].active = true;
-    [self downloadImageFromUrlString:_restaurant.imageUrlString];
 }
 
 - (void)initCellGradientBackgroundView
@@ -77,7 +79,7 @@
 - (void)initCategoryLabelView
 {
     self.categoryLabel = [[UILabel alloc] init];
-    self.categoryLabel.text = _restaurant.type;
+    
     self.categoryLabel.textColor = [UIColor whiteColor];
     self.categoryLabel.textAlignment = NSTextAlignmentLeft;
     self.categoryLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:12];
@@ -92,7 +94,7 @@
 - (void)initNameLabelView
 {
     self.nameLabel = [[UILabel alloc] init];
-    self.nameLabel.text = _restaurant.name;
+    
     self.nameLabel.textColor = [UIColor whiteColor];
     self.nameLabel.textAlignment = NSTextAlignmentLeft;
     self.nameLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:16];
@@ -102,42 +104,6 @@
     [self.nameLabel.leftAnchor constraintEqualToAnchor:self.backgroundImageView.leftAnchor constant:12].active = true;
     [self.nameLabel.bottomAnchor constraintEqualToAnchor:self.categoryLabel.topAnchor constant:-6].active = true;
     [self.nameLabel.rightAnchor constraintEqualToAnchor:self.backgroundImageView.rightAnchor].active = true;
-}
-
-- (void)downloadImageFromUrlString:(NSString *)urlstring
-{
-    UIImage *img = [[GlobalVar getInstance] getCachedImageForKey:urlstring];
-    if (img)
-    {
-        self.backgroundImageView.image = img;
-    } else
-    {
-        NSURLSession *session = [NSURLSession sharedSession];
-        [[session dataTaskWithURL:[NSURL URLWithString:urlstring]
-                completionHandler:^(NSData *data,
-                                    NSURLResponse *response,
-                                    NSError *error) {
-                    if (data)
-                    {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            self.backgroundImageView.image = [UIImage imageWithData:data]  ;
-                            [[GlobalVar getInstance] cacheImage:self.backgroundImageView.image forKey:urlstring];
-                            [self layoutIfNeeded];
-                            self.backgroundImageView.alpha = 0;
-                            [UIView beginAnimations:@"fadeIn" context:nil];
-                            [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-                            [UIView setAnimationDuration:0.4];
-                            self.backgroundImageView.alpha = 1;
-                            [UIView commitAnimations];
-                        });
-                    
-                    } else
-                    {
-                        self.backgroundImageView.image = [UIImage imageNamed:@"Placeholder"];
-                        [self layoutIfNeeded];
-                    }
-                }] resume];
-    }
 }
 
 @end
