@@ -118,6 +118,7 @@ typedef NS_ENUM(NSInteger, navActions)
     [stopButton setBackgroundColor:[UIColor clearColor]];
     [stopButton setHitTestEdgeInsets:UIEdgeInsetsMake(-20, -20, -10, -20)];
     stopButton.tag = stopAction;
+    stopButton.alpha = 0;
     [rightNavView addSubview:stopButton];
     
     stopButton.translatesAutoresizingMaskIntoConstraints = NO;

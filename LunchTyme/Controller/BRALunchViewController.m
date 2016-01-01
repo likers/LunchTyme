@@ -153,6 +153,7 @@
     
     cell.backgroundImageView.image = nil;
     cell.backgroundImageView.alpha = 0;
+    cell.backgroundImageView.transform = CGAffineTransformMakeScale(0.9, 0.9);
     
     BRARestaurant *restaurant;
     
@@ -168,9 +169,11 @@
     if (img)
     {
         cell.backgroundImageView.image = img;
-        [UIView animateWithDuration:0.4 animations:^{
-            cell.backgroundImageView.alpha = 1;
-        } completion:nil];
+        [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut |
+         UIViewAnimationOptionAllowUserInteraction animations:^{
+             cell.backgroundImageView.alpha = 1;
+             cell.backgroundImageView.transform = CGAffineTransformMakeScale(1, 1);
+         } completion:nil];
     } else
     {
         NSURLSession *session = [NSURLSession sharedSession];
@@ -184,17 +187,21 @@
                             cell.backgroundImageView.image = [UIImage imageWithData:data]  ;
                             [[GlobalVar getInstance] cacheImage:cell.backgroundImageView.image forKey:restaurant.imageUrlString];
                             
-                            [UIView animateWithDuration:0.4 animations:^{
+                            [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut |
+                                UIViewAnimationOptionAllowUserInteraction animations:^{
                                 cell.backgroundImageView.alpha = 1;
+                                cell.backgroundImageView.transform = CGAffineTransformMakeScale(1, 1);
                             } completion:nil];
                         });
                         
                     } else
                     {
                         cell.backgroundImageView.image = [UIImage imageNamed:@"Placeholder"];
-                        [UIView animateWithDuration:0.4 animations:^{
-                            cell.backgroundImageView.alpha = 1;
-                        } completion:nil];
+                        [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut |
+                         UIViewAnimationOptionAllowUserInteraction animations:^{
+                             cell.backgroundImageView.alpha = 1;
+                             cell.backgroundImageView.transform = CGAffineTransformMakeScale(1, 1);
+                         } completion:nil];
                     }
                 }] resume];
     }
@@ -203,18 +210,6 @@
     
     return cell;
 }
-
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    CGFloat viewHeight = scrollView.frame.size.height + scrollView.contentInset.top;
-//    for (BRALunchCollectionViewCell *cell in [self.mCollectionView visibleCells]) {
-//        CGFloat y = cell.center.y - scrollView.contentOffset.y;
-//        CGFloat p = y - viewHeight / 2;
-//        CGFloat scale = cos(p / viewHeight * 0.8) * 0.95;
-//        [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState animations:^{
-//            cell.backgroundImageView.transform = CGAffineTransformMakeScale(scale, scale);
-//        } completion:NULL];
-//    }
-//}
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
