@@ -220,11 +220,9 @@
         {
             [facebookLabel.topAnchor constraintEqualToAnchor:phoneLabel.bottomAnchor constant:26].active = true;
         }
-        
         [facebookLabel.leftAnchor constraintEqualToAnchor:contentView.leftAnchor constant:12].active = true;
         [facebookLabel.rightAnchor constraintEqualToAnchor:contentView.rightAnchor constant:-12].active = true;
     }
-    
 }
 
 - (void)didReceiveMemoryWarning

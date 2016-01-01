@@ -12,7 +12,6 @@
 @interface BRALunchCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) BRARestaurant *restaurant;
-//@property (nonatomic, strong) UIImage *backgroundImage;
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 
 @end

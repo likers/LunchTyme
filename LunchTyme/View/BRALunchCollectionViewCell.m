@@ -13,13 +13,11 @@
 
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *categoryLabel;
-
 @property (nonatomic, strong) UIImageView *cellGradientBackgroundView;
 
 @end
 
 @implementation BRALunchCollectionViewCell
-
 
 @synthesize nameLabel, categoryLabel, backgroundImageView, cellGradientBackgroundView;
 
@@ -40,7 +38,6 @@
 - (void)prepareForReuse
 {
     [super prepareForReuse];
-    
 }
 
 - (void)setRestaurant:(BRARestaurant *)restaurant
@@ -79,7 +76,6 @@
 - (void)initCategoryLabelView
 {
     self.categoryLabel = [[UILabel alloc] init];
-    
     self.categoryLabel.textColor = [UIColor whiteColor];
     self.categoryLabel.textAlignment = NSTextAlignmentLeft;
     self.categoryLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:12];
@@ -94,7 +90,6 @@
 - (void)initNameLabelView
 {
     self.nameLabel = [[UILabel alloc] init];
-    
     self.nameLabel.textColor = [UIColor whiteColor];
     self.nameLabel.textAlignment = NSTextAlignmentLeft;
     self.nameLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:16];
