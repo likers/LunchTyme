@@ -39,16 +39,16 @@
         [self registerForPreviewingWithDelegate:(id)self sourceView:self.view];
     }
     
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"Restaurants"])
-    {
-        NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"Restaurants"];
-        self.resultArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-        [self getAnnotationArray];
-    } else
-    {
+//    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"Restaurants"])
+//    {
+//        NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"Restaurants"];
+//        self.resultArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+//        [self getAnnotationArray];
+//    } else
+//    {
         [self buildPlaceholderArray];
         [self getJsonData];
-    }
+//    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -104,9 +104,9 @@
                     self.resultArray = [[NSArray alloc] initWithArray:resultDic[@"restaurants"]];
                     [self getAnnotationArray];
                     
-                    NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:self.resultArray];
-                    [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"Restaurants"];
-                    [[NSUserDefaults standardUserDefaults] synchronize];
+//                    NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:self.resultArray];
+//                    [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"Restaurants"];
+//                    [[NSUserDefaults standardUserDefaults] synchronize];
                     
                     [mCollectionView reloadData];
                     
@@ -120,6 +120,7 @@
                 }
                 
             }] resume];
+    [session finishTasksAndInvalidate];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -176,39 +177,53 @@
          } completion:nil];
     } else
     {
-        NSURLSession *session = [NSURLSession sharedSession];
-        [[session dataTaskWithURL:[NSURL URLWithString:restaurant.imageUrlString]
-                completionHandler:^(NSData *data,
-                                    NSURLResponse *response,
-                                    NSError *error) {
-                    if (data)
-                    {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            cell.backgroundImageView.image = [UIImage imageWithData:data]  ;
-                            [[GlobalVar getInstance] cacheImage:cell.backgroundImageView.image forKey:restaurant.imageUrlString];
+        
+        dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+        dispatch_async(backgroundQueue, ^(void) {
+            NSURLSession *session = [NSURLSession sharedSession];
+            [[session dataTaskWithURL:[NSURL URLWithString:restaurant.imageUrlString]
+                    completionHandler:^(NSData *data,
+                                        NSURLResponse *response,
+                                        NSError *error) {
+                        if (data)
+                        {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                cell.backgroundImageView.image = [UIImage imageWithData:data]  ;
+                                [[GlobalVar getInstance] cacheImage:cell.backgroundImageView.image forKey:restaurant.imageUrlString];
+                                
+                                [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut |
+                                 UIViewAnimationOptionAllowUserInteraction animations:^{
+                                     cell.backgroundImageView.alpha = 1;
+                                     cell.backgroundImageView.transform = CGAffineTransformMakeScale(1, 1);
+                                 } completion:nil];
+                            });
                             
+                        } else
+                        {
+                            cell.backgroundImageView.image = [UIImage imageNamed:@"Placeholder"];
                             [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut |
-                                UIViewAnimationOptionAllowUserInteraction animations:^{
-                                cell.backgroundImageView.alpha = 1;
-                                cell.backgroundImageView.transform = CGAffineTransformMakeScale(1, 1);
-                            } completion:nil];
-                        });
-                        
-                    } else
-                    {
-                        cell.backgroundImageView.image = [UIImage imageNamed:@"Placeholder"];
-                        [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut |
-                         UIViewAnimationOptionAllowUserInteraction animations:^{
-                             cell.backgroundImageView.alpha = 1;
-                             cell.backgroundImageView.transform = CGAffineTransformMakeScale(1, 1);
-                         } completion:nil];
-                    }
-                }] resume];
+                             UIViewAnimationOptionAllowUserInteraction animations:^{
+                                 cell.backgroundImageView.alpha = 1;
+                                 cell.backgroundImageView.transform = CGAffineTransformMakeScale(1, 1);
+                             } completion:nil];
+                        }
+                    }] resume];
+            [session finishTasksAndInvalidate];
+        });
     }
     
     cell.restaurant = restaurant;
     
     return cell;
+}
+
+- (void)URLSession:(NSURLSession *)session didBecomeInvalidWithError:(NSError *)error
+{
+    if (error)
+    {
+        NSLog(@"[GPPhotoRequest] Session Invalidation: %@", [error description]);
+    }
+    session = nil;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
