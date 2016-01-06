@@ -68,14 +68,22 @@ BOOL zoomedIn;
 {
     mMapView = [[MKMapView alloc] init];
     mMapView.delegate = self;
-    [self.view addSubview:mMapView];
     mMapView.showsUserLocation = YES;
-    
     mMapView.translatesAutoresizingMaskIntoConstraints = NO;
-    [mMapView.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:64].active = true;
-    [mMapView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = true;
-    [mMapView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = true;
-    [mMapView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor].active = true;
+    [self.view addSubview:mMapView];
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(mMapView);
+    
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"V:|[mMapView]|"
+                               options:0
+                               metrics:nil
+                               views:views]];
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"H:|[mMapView]|"
+                               options:0
+                               metrics:nil
+                               views:views]];
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation

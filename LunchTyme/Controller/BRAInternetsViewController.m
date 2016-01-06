@@ -67,11 +67,8 @@ typedef NS_ENUM(NSInteger, navActions)
     [backButton setHitTestEdgeInsets:UIEdgeInsetsMake(-10, -30, -10, -10)];
     backButton.tag = backAction;
     backButton.alpha = 0.5;
-    [leftNavView addSubview:backButton];
-    
     backButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [backButton.centerYAnchor constraintEqualToAnchor:leftNavView.centerYAnchor].active = true;
-    [backButton.leftAnchor constraintEqualToAnchor:leftNavView.leftAnchor constant:32].active = true;
+    [leftNavView addSubview:backButton];
     
     UIButton *reloadButton = [[UIButton alloc] init];
     [reloadButton setImage:[UIImage imageNamed:@"WebRefresh"] forState:UIControlStateNormal];
@@ -79,11 +76,8 @@ typedef NS_ENUM(NSInteger, navActions)
     [reloadButton setBackgroundColor:[UIColor clearColor]];
     [reloadButton setHitTestEdgeInsets:UIEdgeInsetsMake(-10, -10, -10, -10)];
     reloadButton.tag = reloadAction;
-    [leftNavView addSubview:reloadButton];
-    
     reloadButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [reloadButton.centerYAnchor constraintEqualToAnchor:leftNavView.centerYAnchor].active = true;
-    [reloadButton.leftAnchor constraintEqualToAnchor:backButton.rightAnchor constant:32].active = true;
+    [leftNavView addSubview:reloadButton];
     
     UIButton *forwardButton = [[UIButton alloc] init];
     [forwardButton setImage:[UIImage imageNamed:@"WebForward"] forState:UIControlStateNormal];
@@ -92,32 +86,52 @@ typedef NS_ENUM(NSInteger, navActions)
     [forwardButton setHitTestEdgeInsets:UIEdgeInsetsMake(-10, -10, -10, -30)];
     forwardButton.tag = forwardAction;
     forwardButton.alpha = 0.5;
+    forwardButton.translatesAutoresizingMaskIntoConstraints = NO;
     [leftNavView addSubview:forwardButton];
     
-    forwardButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [forwardButton.centerYAnchor constraintEqualToAnchor:leftNavView.centerYAnchor].active = true;
-    [forwardButton.leftAnchor constraintEqualToAnchor:reloadButton.rightAnchor constant:32].active = true;
+    NSDictionary *navViews = NSDictionaryOfVariableBindings(backButton, reloadButton, forwardButton, leftNavView);
+
+    [leftNavView addConstraints: [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-32-[backButton]-32-[reloadButton]-32-[forwardButton]|"
+                            options:NSLayoutFormatAlignAllCenterY
+                            metrics:nil
+                            views:navViews]];
+    [leftNavView
+     addConstraints: [NSLayoutConstraint
+                      constraintsWithVisualFormat:@"V:|[backButton]|"
+                      options:0
+                      metrics:nil
+                      views:navViews]];
     
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftNavView];
     self.navigationItem.leftBarButtonItem = leftItem;
-    
     leftNavView.translatesAutoresizingMaskIntoConstraints = NO;
-    [leftNavView.topAnchor constraintEqualToAnchor:self.navigationController.navigationBar.topAnchor].active = true;
-    [leftNavView.leftAnchor constraintEqualToAnchor:self.navigationController.navigationBar.leftAnchor].active = true;
-    [leftNavView.bottomAnchor constraintEqualToAnchor:self.navigationController.navigationBar.bottomAnchor].active = true;
-    [leftNavView.widthAnchor constraintEqualToConstant:DEVICE_WIDTH/2].active = true;
+    NSDictionary *metrics = @{@"width":@(DEVICE_WIDTH/2)};
+    [self.navigationController.navigationBar
+     addConstraints:[NSLayoutConstraint
+                     constraintsWithVisualFormat:@"V:|[leftNavView]|"
+                     options:0
+                     metrics:metrics
+                     views:navViews]];
 }
 
 - (void)initProgressView
 {
     progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+    progressView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:progressView];
     
-    progressView.translatesAutoresizingMaskIntoConstraints = NO;
-    [progressView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = true;
-    [progressView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = true;
-    [progressView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor].active = true;
-    [progressView.heightAnchor constraintEqualToConstant:2.5].active = true;
+    NSDictionary *views = NSDictionaryOfVariableBindings(progressView);
+    
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"V:|[progressView(==2.5)]"
+                               options:0
+                               metrics:nil
+                               views:views]];
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"H:|[progressView]|"
+                               options:0
+                               metrics:nil
+                               views:views]];
 }
 
 - (void)initWKWebView
@@ -129,13 +143,21 @@ typedef NS_ENUM(NSInteger, navActions)
     mWebView.navigationDelegate = self;
     mWebView.UIDelegate = self;
     mWebView.allowsBackForwardNavigationGestures = YES;
+    mWebView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view insertSubview:mWebView belowSubview:progressView];
     
-    mWebView.translatesAutoresizingMaskIntoConstraints = NO;
-    [mWebView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = true;
-    [mWebView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = true;
-    [mWebView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = true;
-    [mWebView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor].active = true;
+    NSDictionary *views = NSDictionaryOfVariableBindings(mWebView);
+    
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"V:|[mWebView]|"
+                               options:0
+                               metrics:nil
+                               views:views]];
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"H:|[mWebView]|"
+                               options:0
+                               metrics:nil
+                               views:views]];
     
     [self.mWebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     NSURL *url = [NSURL URLWithString:homeURL];
@@ -143,6 +165,7 @@ typedef NS_ENUM(NSInteger, navActions)
     [mWebView loadRequest:requestObj];
 }
 
+//MARK: - user script related
 - (void) addUserScriptToUserContentController:(WKUserContentController *) userContentController
 {
     NSString *jsHandler = [NSString stringWithContentsOfURL:[[NSBundle mainBundle]URLForResource:@"ajaxHandler" withExtension:@"js"] encoding:NSUTF8StringEncoding error:NULL];

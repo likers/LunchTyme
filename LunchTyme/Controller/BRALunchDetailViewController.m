@@ -107,6 +107,7 @@
     [nameLabel.leftAnchor constraintEqualToAnchor:titleView.leftAnchor constant:12].active = true;
     [nameLabel.bottomAnchor constraintEqualToAnchor:titleView.centerYAnchor constant:-3].active = true;
     [nameLabel.rightAnchor constraintEqualToAnchor:titleView.rightAnchor constant:-12].active = true;
+    [nameLabel.heightAnchor constraintEqualToConstant:16].active = true;
     
     //restaurant category label
     UILabel *categoryLabel = [[UILabel alloc] init];
@@ -120,6 +121,7 @@
     [categoryLabel.topAnchor constraintEqualToAnchor:titleView.centerYAnchor constant:3].active = true;
     [categoryLabel.leftAnchor constraintEqualToAnchor:titleView.leftAnchor constant:12].active = true;
     [categoryLabel.rightAnchor constraintEqualToAnchor:titleView.rightAnchor constant:-12].active = true;
+    [categoryLabel.heightAnchor constraintEqualToConstant:12].active = true;
 }
 
 - (void)initContentView
