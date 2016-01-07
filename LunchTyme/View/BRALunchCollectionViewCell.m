@@ -97,7 +97,7 @@
     [self.backgroundImageView addSubview:self.nameLabel];
     
     [self.nameLabel.leftAnchor constraintEqualToAnchor:self.backgroundImageView.leftAnchor constant:12].active = true;
-    [self.nameLabel.bottomAnchor constraintEqualToAnchor:self.categoryLabel.topAnchor constant:-6].active = true;
+    [self.nameLabel.bottomAnchor constraintEqualToAnchor:self.categoryLabel.topAnchor constant:0].active = true;
     [self.nameLabel.rightAnchor constraintEqualToAnchor:self.backgroundImageView.rightAnchor].active = true;
 }
 
